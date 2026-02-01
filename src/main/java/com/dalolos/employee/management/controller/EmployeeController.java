@@ -37,6 +37,8 @@ public class EmployeeController {
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
         Set<Role> roleList = new HashSet<>();
 
+        employee.setPassword(employeeService.encryptPassword(employee.getPassword()));
+
         if(employee.getRolesList() != null) {
             for (Role r : employee.getRolesList()) {
                 Role role = roleService.findById(r.getId()).orElseThrow(() -> new IllegalArgumentException("Role with id " + r.getId() + " not found"));
