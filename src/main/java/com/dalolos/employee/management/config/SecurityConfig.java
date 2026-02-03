@@ -23,7 +23,6 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(authorizeRequests -> authorizeRequests.anyRequest().authenticated())
                 .build();
     }
 
